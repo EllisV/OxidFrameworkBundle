@@ -1,5 +1,5 @@
 {
-    "name": "ellisv/oxid-framework-bundle",
+    "name": "ellis/oxid-framework-bundle",
     "type": "symfony-bundle",
     "description": "Oxid Framework Bundle",
     "license": "MIT",
@@ -19,6 +19,6 @@
         "symfony/yaml": "~2.6"
     },
     "autoload": {
-        "psr-4": { "EllisV\\Oxid\\Bundle\\FrameworkBundle\\": "" }
+        "psr-4": { "Ellis\\Oxid\\Bundle\\FrameworkBundle\\": "" }
     }
 }

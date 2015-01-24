@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace EllisV\Oxid\Bundle\FrameworkBundle;
+namespace Ellis\Oxid\Bundle\FrameworkBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
