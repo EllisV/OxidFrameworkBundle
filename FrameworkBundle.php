@@ -11,8 +11,16 @@
 
 namespace Ellis\Oxid\Bundle\FrameworkBundle;
 
+use Ellis\Oxid\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddConsoleCommandPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class FrameworkBundle extends Bundle
 {
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new AddConsoleCommandPass());
+    }
 }
