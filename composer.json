@@ -10,7 +10,13 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+        "symfony/dependency-injection": "~2.6",
+        "symfony/config": "~2.6",
+        "symfony/event-dispatcher": "~2.6",
+        "symfony/http-kernel": "~2.6",
+        "symfony/filesystem": "~2.6",
+        "symfony/yaml": "~2.6"
     },
     "autoload": {
         "psr-4": { "EllisV\\Oxid\\Bundle\\FrameworkBundle\\": "" }
