@@ -1,0 +1,18 @@
+{
+    "name": "ellisv/oxid-framework-bundle",
+    "type": "symfony-bundle",
+    "description": "Oxid Framework Bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eligijus Vitkauskas",
+            "email": "eligijusvitkauskas@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-4": { "EllisV\\Oxid\\Bundle\\FrameworkBundle\\": "" }
+    }
+}
