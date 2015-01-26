@@ -11,6 +11,7 @@
 
 namespace Ellis\Oxid\Bundle\FrameworkBundle;
 
+use Ellis\Oxid\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddCacheClearerPass;
 use Ellis\Oxid\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddConsoleCommandPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -21,6 +22,7 @@ class FrameworkBundle extends Bundle
     {
         parent::build($container);
 
+        $container->addCompilerPass(new AddCacheClearerPass());
         $container->addCompilerPass(new AddConsoleCommandPass());
     }
 }
