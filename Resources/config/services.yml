@@ -10,6 +10,8 @@ services:
 
     cache_clearer:
         class: '%cache_clearer.class%'
+        arguments:
+            - []
 
     service_container:
         synthetic: true
