@@ -1,11 +1,15 @@
 parameters:
     event_dispatcher.class: Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher
+    cache_clearer.class: Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer
     filesystem.class: Symfony\Component\Filesystem\Filesystem
 
 services:
     event_dispatcher:
         class: '%event_dispatcher.class%'
         arguments: ['@service_container']
+
+    cache_clearer:
+        class: '%cache_clearer.class%'
 
     service_container:
         synthetic: true
