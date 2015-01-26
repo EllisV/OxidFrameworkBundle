@@ -28,7 +28,33 @@ class FrameworkExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $this->addContainerParametersFromConfig($config, $container);
+
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+    }
+
+    /**
+     * Restersize config parameters and add them to container
+     *
+     * @param array            $config
+     * @param ContainerBuilder $container
+     * @param string           $prepend
+     *
+     * @return array
+     */
+    private function addContainerParametersFromConfig(array $config, ContainerBuilder $container, $prepend = 'oxid.')
+    {
+        foreach ($config as $key => $value) {
+            if (is_array($value)) {
+                $this->addContainerParametersFromConfig($value, $container, $prepend.$key.'.');
+                continue;
+            }
+
+            $container->setParameter($prepend.$key, $value);
+        }
     }
 }
