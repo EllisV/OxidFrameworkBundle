@@ -13,6 +13,7 @@ namespace Ellis\Oxid\Bundle\FrameworkBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -34,6 +35,9 @@ class DatabaseInstallCommand extends Command implements ContainerAwareInterface
     {
         $this
             ->setName('database:install')
+            ->setDefinition(array(
+                new InputOption('no-demodata', '', InputOption::VALUE_NONE, 'Do not install demodata')
+            ))
             ->setDescription('Install OXID database')
             ->setHelp('The <info>%command.name%</info> command creates OXID database and tables for it')
         ;
@@ -45,17 +49,17 @@ class DatabaseInstallCommand extends Command implements ContainerAwareInterface
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $installer = $this->getContainer()->get('oxid.database_installer');
+        $databaseName = $this->getContainer()->getParameter('oxid.database.name');
+
         if ($installer->isInstalled()) {
-            $output->isVerbose() and $output->writeln('  Database is already installed');
+            $output->writeln(sprintf('<info>%s</info> database is already installed', $databaseName));
             return;
         }
 
-        $databaseName = $this->getContainer()->getParameter('oxid.database.name');
         $output->writeln(sprintf('Creating <info>%s</info> database with OXID tables', $databaseName));
         $installer->install();
 
-        $dialog = $this->getHelper('dialog');
-        if ($dialog->askConfirmation($output, '<question>Install demodata?</question>', true)) {
+        if (!$input->getOption('no-demodata')) {
             $output->isVerbose() and $output->writeln('  Installing demodata');
             $installer->installDemodata();
             $output->isVerbose() and $output->writeln('  Finished installing demodata');
