@@ -45,12 +45,7 @@ class ScriptHandler
     {
         $options = self::getOptions($event);
 
-        $cmd = 'database:install';
-        if (!$event->getIO()->askConfirmation('Would you like to install Demo data? [y/N] ', false)) {
-            $cmd .= ' --no-demodata';
-        }
-
-        static::executeCommand($event, $cmd, $options['process-timeout']);
+        static::executeCommand($event, 'database:install', $options['process-timeout']);
     }
 
     /**
