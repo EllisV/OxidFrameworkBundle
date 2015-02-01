@@ -17,6 +17,9 @@ services:
     service_container:
         synthetic: true
 
+    kernel:
+        synthetic: true
+
     filesystem:
         class: '%filesystem.class%'
 
