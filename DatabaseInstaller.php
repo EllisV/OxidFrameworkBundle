@@ -120,13 +120,13 @@ class DatabaseInstaller
     protected function importDump($database, $filename, $timeout = 180)
     {
         $path = $this->fileLocator->locate($filename);
-        $cmd = escapeshellarg(
-            $this->getMysql() . ' -u'
-            . $this->databaseUser
-            . ' --password=' . $this->databasePassword
-            . ' --host=' . $this->databaseHost
-            . ' ' . $database
-        ) . ' < ' . $path;
+        $cmd = escapeshellcmd(
+            $this->getMysql() . ' -u '
+            . escapeshellarg($this->databaseUser)
+            . ' --password=' . escapeshellarg($this->databasePassword)
+            . ' --host=' . escapeshellarg($this->databaseHost)
+            . ' ' . escapeshellarg($database)
+        ) . ' < ' . escapeshellarg($path);
 
         $process = new Process($cmd, null, null, null, $timeout);
         $process->run();
