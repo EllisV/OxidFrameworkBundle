@@ -99,7 +99,7 @@ EOF
      *
      * @return ContainerInterface
      */
-    public function getContainer()
+    protected function getContainer()
     {
         return $this->container;
     }

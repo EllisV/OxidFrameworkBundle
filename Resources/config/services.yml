@@ -2,6 +2,7 @@ parameters:
     event_dispatcher.class: Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher
     cache_clearer.class: Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer
     filesystem.class: Symfony\Component\Filesystem\Filesystem
+    file_locator.class: Symfony\Component\HttpKernel\Config\FileLocator
 
 services:
     event_dispatcher:
@@ -18,3 +19,7 @@ services:
 
     filesystem:
         class: '%filesystem.class%'
+
+    file_locator:
+        class: '%file_locator.class%'
+        arguments: ['@kernel', '%kernel.root_dir%/Resources']

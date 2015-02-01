@@ -1,0 +1,18 @@
+parameters:
+    oxid.database_installer.class: Ellis\Oxid\Bundle\FrameworkBundle\DatabaseInstaller
+
+services:
+    oxid.database_installer.connection:
+        public: false
+        class: mysqli
+        arguments: ['%oxid.database.host%', '%oxid.database.user%', '%oxid.database.password%']
+
+    oxid.database_installer:
+        class: '%oxid.database_installer.class%'
+        arguments:
+            - '%oxid.database.host%'
+            - '%oxid.database.name%'
+            - '%oxid.database.user%'
+            - '%oxid.database.password%'
+            - '@file_locator'
+            - '@oxid.database_installer.connection'

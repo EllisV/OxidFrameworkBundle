@@ -37,6 +37,18 @@ class ScriptHandler
     }
 
     /**
+     * Installs OXID database.
+     *
+     * @param CommandEvent $event
+     */
+    public static function installDatabase(CommandEvent $event)
+    {
+        $options = self::getOptions($event);
+
+        static::executeCommand($event, 'database:install', $options['process-timeout']);
+    }
+
+    /**
      * @author Jordi Boggiano <j.boggiano@seld.be>
      */
     protected static function executeCommand(CommandEvent $event, $cmd, $timeout = 300)
