@@ -41,9 +41,16 @@ class Bootstrapper implements BootstrapperInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws BootstrapperException
      */
     public function bootstrap()
     {
+        $path = $this->webDir.'/bootstrap.php';
+        if (!is_file($path)) {
+            throw new BootstrapperException(sprintf('OXID bootstrapper on %s is not found', $path));
+        }
+
         require_once $this->webDir.'/bootstrap.php';
     }
 }
