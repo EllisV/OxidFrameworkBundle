@@ -1,5 +1,7 @@
 parameters:
     oxid.database_installer.class: Ellis\Oxid\Bundle\FrameworkBundle\DatabaseInstaller
+    oxid.bootstrapper.class: Ellis\Oxid\Bundle\FrameworkBundle\Bootstrapper\Bootstrapper
+    oxid.oxid_factory.class: Ellis\Oxid\Bundle\FrameworkBundle\OxidFactory
 
 services:
     oxid.database_installer.connection:
@@ -16,3 +18,22 @@ services:
             - '%oxid.database.password%'
             - '@file_locator'
             - '@oxid.database_installer.connection'
+
+    oxid.bootstrapper:
+        class: '%oxid.bootstrapper.class%'
+        arguments: ['%kernel.root_dir%/../web']
+
+    oxid.oxid_aware:
+        abstract: true
+        calls:
+            - [setOxidBootstrapper, ['@oxid.bootstrapper']]
+            - [bootstrapOxid, []]
+
+    oxid.oxid_factory:
+        class: '%oxid.oxid_factory.class%'
+        parent: oxid.oxid_aware
+
+    oxid.database_metadata_handler:
+        class: oxDbMetaDataHandler
+        factory: ['@oxid.oxid_factory', getFromRegistry]
+        arguments: ['oxDbMetaDataHandler']
