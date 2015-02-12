@@ -17,12 +17,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Ellis\Oxid\Bundle\FrameworkBundle\OxidAwareInterface;
 
 /**
- * Install OXID database.
+ * Update OXID database views.
  */
-class DatabaseInstallCommand extends Command implements ContainerAwareInterface
+class DatabaseViewsUpdateCommand extends Command implements ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
