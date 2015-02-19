@@ -52,6 +52,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('shop_ssl_url')->defaultNull()->end()
                 ->scalarNode('admin_ssl_url')->defaultNull()->end()
                 ->scalarNode('compile_dir')->defaultValue('%kernel.cache_dir%/oxid')->end()
+                ->scalarNode('web_dir')->defaultValue('%kernel.root_dir%/../web')->end()
             ->end()
         ;
 

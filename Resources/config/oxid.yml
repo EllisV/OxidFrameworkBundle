@@ -21,7 +21,7 @@ services:
 
     oxid.bootstrapper:
         class: '%oxid.bootstrapper.class%'
-        arguments: ['%kernel.root_dir%/../web']
+        arguments: ['%oxid.web_dir%']
 
     oxid.oxid_aware:
         abstract: true
