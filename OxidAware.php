@@ -13,6 +13,9 @@ namespace Ellis\Oxid\Bundle\FrameworkBundle;
 
 use Ellis\Oxid\Bundle\FrameworkBundle\Bootstrapper\BootstrapperInterface;
 
+/**
+ * Abstract class for OXID Aware classes
+ */
 abstract class OxidAware implements OxidAwareInterface
 {
     /**

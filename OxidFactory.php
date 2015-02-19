@@ -11,8 +11,20 @@
 
 namespace Ellis\Oxid\Bundle\FrameworkBundle;
 
+/**
+ * OXID Factory
+ *
+ * This is a factory services for fetching and constructing OXID objects
+ */
 class OxidFactory extends OxidAware
 {
+    /**
+     * Get object from oxRegistry
+     *
+     * @param string $serviceName
+     *
+     * @return mixed
+     */
     public function getFromRegistry($serviceName)
     {
         return \oxRegistry::get($serviceName);
